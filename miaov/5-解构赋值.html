@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title></title>
+        <script type="text/javascript" src="../js/vue.js" ></script>
+		<style>
+			
+		</style>
+		<script>
+			//ES6 允许按照一定模式，从数组和对象中提取值，对变量进行赋值，这被称为解构
+			let arr = [1,2,3,4];
+
+			// let a = arr[0]
+			// let b = arr[1]
+			// let c = arr[2]
+
+			// 解构
+			var [a,b,c,d,e='默认值'] = [1,2,3,4];
+
+			console.log(a);		//1
+			console.log(e);		//默认值
+
+			//嵌套数组解构赋值
+			let [foo, [[bar], baz]] = [1, [[2], 3]];
+			console.log(foo);	// 1
+			console.log(bar);	// 2
+			console.log(baz);	// 3
+			
+			let [ , , third] = ["foo", "bar", "baz"];
+			console.log(third); // "baz"
+			
+			let [m, , n] = [1, 2, 3];
+			console.log(m);		// 1
+			console.log(n);		// 3
+			
+			let [head, ...tail] = [1, 2, 3, 4];
+			console.log(head);	// 1
+			console.log(tail);	// [2, 3, 4]
+			
+			let [x, y, ...z] = ['a'];
+			console.log(x);		// "a"
+			console.log(y);		// undefined
+			console.log(z);		// []
+
+			let [o, p, q] = new Set(['a', 'b', 'c']);
+			console.log(o);		// "a"
+			
+			//对象的解构赋值(与先后顺序没关系，变量必须与属性同名)
+			/*let { bar, foo } = { foo: "aaa", bar: "bbb" };
+			foo // "aaa"
+			bar // "bbb"
+			
+			let { baz } = { foo: "aaa", bar: "bbb" };
+			baz // undefined*/
+			
+			//交换变量的值
+			let x1 = 1;
+			let y1 = 2;
+			[x1, y1] = [y1, x1];
+			console.log(x1);		//2
+			console.log(y1);		//1
+			
+			//从函数返回多个值 返回一个数组
+			function example() {
+			  return [1, 2, 3];
+			}
+			let [a1, b1, c1] = example();
+			console.log(a1+b1+c1);	//6
+			
+			// 返回一个对象
+			function example2() {
+			  return {
+			    foo1: 1,
+			    bar1: 2
+			  };
+			}
+			let { foo1, bar1 } = example2();
+			console.log(foo1);	// 1
+			console.log(bar1);	// 2
+			
+			let jsonData = {
+			  id: 42,
+			  status: "OK",
+			  data: [867, 5309]
+			};
+			
+			let { id, status, data: number } = jsonData;
+			
+			console.log(id, status, number);
+			// 42, "OK", [867, 5309]
+			
+			var miaov = {
+				fn:function(){},
+				add: function(){alert(1)},
+				isFunction:function(){alert(2)}
+			}
+
+			/*miaov.add()
+			miaov.isFunction()
+			miaov.fn()*/
+
+			let {add,isFunction,isArray=function(){}} = miaov;
+
+			console.log(add);			//ƒ (){alert(1)}
+			console.log(isFunction);	//ƒ (){alert(2)}
+
+			console.log(isArray);		//ƒ (){}
+
+
+		</script>
+	</head>
+
+	<body>
+		
+	</body>
+</html>

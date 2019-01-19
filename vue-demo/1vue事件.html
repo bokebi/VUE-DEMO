@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮1click" v-on:click='add()' />
+        <input type="button" value="按钮2mouseover" v-on:mouseover='add()' />
+        <input type="button" value="按钮3mouseout" v-on:mouseout='add()' />
+        <input type="button" value="按钮4mousedown" v-on:mousedown='add()' />
+        <input type="button" value="按钮5mouseup" v-on:mouseup='add()' />
+        <input type="button" value="按钮6dblclick" v-on:dblclick='add()' />
+        <hr />
+        <ul>
+            <li v-for='value in arr'>
+                {{value}}
+            </li>
+        </ul>
+    </div>
+    <script>
+    var app = new Vue({
+        el: '#box',
+        data: {
+            arr: ['apple','orange', 'banana','pear']
+        },
+        methods: {
+            add(){
+                this.arr.push('tomato');
+            }
+        }
+    })
+    </script>
+</body>
+</html>

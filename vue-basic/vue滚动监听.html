@@ -1,0 +1,88 @@
+<!--<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+<title>监听滚动条事件</title>
+<style type="text/css">
+*{margin: 0;padding: 0;}
+ul{width: 100%;}
+li{width: 100%;height: 50px;}
+</style>
+</head>
+<body>
+<ul>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+<li>0001</li>
+</ul>
+</body>
+<script type="text/javascript">
+window.addEventListener("scroll",function(e){
+//alert("滚动了");
+//变量t就是滚动条滚动时，到顶部的距离
+var t =document.documentElement.scrollTop||document.body.scrollTop;
+console.log(t)
+if(t <= 0){
+alert("到顶部了")
+}
+});
+</script>
+</html>-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="UTF-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+ <title>Document</title>
+ <script type="text/javascript" src="https://unpkg.com/vue@2.2.6/dist/vue.js"></script>
+ <style type="text/css">
+ #box {
+  width: 100%;
+  height: 2000px;
+ }
+ </style>
+</head>
+<div id="box"></div>
+<body>
+ <!-- vue监听滚动事件 -->
+ <script type="text/javascript">
+ var vm = new Vue({
+   el:'#box',
+  data() {
+   return {
+    scroll: ''
+   }
+  },
+  methods: {
+   menu() {
+    this.scroll = document.body.scrollTop;
+    console.log(this.scroll)
+   }
+  },
+  mounted() {
+   window.addEventListener('scroll', this.menu,true)
+  },
+ })
+ </script>
+</body>
+</html>	

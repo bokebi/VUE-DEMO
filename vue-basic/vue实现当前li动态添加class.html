@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>初识Vue</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+			.active{
+			    color:#f00;
+			}
+			.unactive{
+			    color:#000;
+			}
+			.icon{
+			    float: right;
+			    font-size:12px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="app1">
+		    <ul>
+		        <li v-for="(item,$index) in items"  @click="selectStyle (item, $index) " :class="{'active':item.active,'unactive':!item.active}" >
+		            {{item.select}} 
+		            <span class="icon" v-show="item.active">当我是图标</span>
+		        </li>
+		    </ul>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app1',
+			data: {
+				active: false,
+                items: [
+                        {select:'第一行'},
+                        {select:'第二行'},
+                        {select:'第三行'},
+                        {select:'第四行'},
+                ]
+			},
+			methods: {
+            selectStyle (item, index) {
+                this.$nextTick(function () {
+                      this.items.forEach(function (item) {
+                        //item.active = false;
+                        Vue.set(item,'active',false)
+                    });
+                    //item.active = true;
+                    Vue.set(item,'active',true)
+                    console.log(item.active);
+                });
+            }
+        }
+		});
+		
+	</script>
+</html>
+

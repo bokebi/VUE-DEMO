@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta http-equiv="X-UA-Compatible" content="ie=edge" />
+		<title>Vue组件的CSS过渡动画</title>
+		<style type="text/css">
+			.v-enter-active{
+				transition: all .3s 1s ease-in;
+			}
+			.v-leave-active {
+				transition: all 1s ease-out;
+			}
+			.v-enter,
+			.v-leave-to {
+				transform: translate(10px,10px);
+				opacity: 0;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div id="demo">
+			<button @click = "show = !show">toggle</button>
+			<!-- 对于在过渡中切换的类名来说，如果没有定义<transition>的name属性值，则 v- 是默认前缀。 -->
+			<transition>
+				<p v-if="show">Vue组件的CSS过渡动画</p>
+			</transition>
+			
+		</div>
+	</body>
+	<script src="js/vue.js"></script>
+	<script>
+		var demo = new Vue({
+			el: '#demo',
+			data: {
+				show: true
+			}
+		})
+	</script>
+</html>

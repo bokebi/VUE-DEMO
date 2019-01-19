@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>prop</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="components-prop">
+			<!--组件的复用-->
+		  <blog-post title="博客标题1"></blog-post>
+		  <blog-post title="博客标题2"></blog-post>
+		  <blog-post title="博客标题3"></blog-post>
+		</div>
+	<body>
+		
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript">
+		Vue.component('blog-post',{
+			props: ['title'],
+			template: `
+				<h3 v-text='title'></h3>
+			`
+		})
+		new Vue({
+			el: '#components-prop'
+		})
+	</script>
+</html>

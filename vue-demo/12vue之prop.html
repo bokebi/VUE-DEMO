@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>prop</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="demo1">
+      <child message="hello!"></child>
+    </div>
+    
+    <div id="demo2">
+      <child my-message="hello!"></child>
+    </div>
+    <br>
+    <div id="demo3">
+      <input type="text" name="" id="" v-model="parentMsg">
+      <br>
+      <child :my-message="parentMsg"></child>
+    </div>
+
+    <div id="demo4">
+      <blog title="标题1"></blog>
+      <blog title="标题2"></blog>
+      <blog title="标题3"></blog>
+    </div>
+
+    <div id="demo5" class="demo">
+      <blog-post
+        v-for="post in posts"
+        v-bind:key="post.id"
+        v-bind:title="post.title"
+      ></blog-post>
+    </div>
+    <script>
+    Vue.component('child',{
+      props: ['message'],
+      template: '<span>{{message}}</span>'
+    });
+    new Vue({
+      el: '#demo1'
+    });
+    
+    Vue.component('child',{
+      props: ['myMessage'],
+      template: '<span>{{myMessage}}</span>'
+    })
+    new Vue({
+      el: '#demo2'
+    });
+    
+    //动态绑定props
+    var app3 = new Vue({
+      el: '#demo3',
+      data: {
+				    parentMsg: 'Message from parent'
+				},
+      components: {
+        child: {
+          props: ['myMessage'],
+          template: '<span>{{myMessage}}</span>'
+        }
+      }
+    })
+    
+    Vue.component('blog',{
+      props: ['title'],
+      template: '<h4>{{title}}</h4>'
+    })
+    var app4 = new Vue({
+      el: '#demo4'
+    });
+    
+    Vue.component('blog-post', {
+      props: ['title'],
+      template: '<p>{{ title }}</p>'
+    })
+
+    new Vue({
+      el: '#demo5',
+      data: {
+        posts: [
+          { id: 1, title: 'My journey with Vue' },
+          { id: 2, title: 'Blogging with Vue' },
+          { id: 3, title: 'Why Vue is so fun' }
+        ]
+      }
+    })
+    </script>
+  </body>
+</html>

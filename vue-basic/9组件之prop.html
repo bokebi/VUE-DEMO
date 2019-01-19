@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div id="components-prop">
+		<blog-post v-for="post in posts" :key = "post.id" :title = "post.title"></blog-post>
+	</div>
+	<script src="js/vue.js"></script>
+	<script>
+		Vue.component('blog-post',{
+			props: ['title'],
+			template: '<h3>{{title}}</h3>'
+		});
+		var blogTitle = new Vue({
+			el: '#components-prop',
+			data: {
+				posts: [
+					{id: 1, title: '博客1'},
+					{id: 2, title: '博客2'},
+					{id: 3, title: '博客3'},
+				]
+			}
+		});
+	</script>
+</body>
+</html>

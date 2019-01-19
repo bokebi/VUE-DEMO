@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="demo"><my-component></my-component></div>
+    <br />
+    <div id="demo2"><my-component2></my-component2></div>
+    
+    <div id="app">
+      <table border="1" cellpadding="5" cellspacing="0">
+        <my-row></my-row>
+        <my-row></my-row>
+        <tr is="my-row"></tr>
+        <tr is="my-row"></tr>
+      </table>
+    </div>
+    
+    <script type="text/javascript">
+      //全局注册组件
+      Vue.component("my-component", {
+        template: "<div>全局注册组件!</div>"
+      });
+      new Vue({
+        el: "#demo"
+      });
+
+      //局部注册组件
+      new Vue({
+        el: "#demo2",
+        components: {
+          "my-component2": {
+            template: "<div>局部注册组件!</div>"
+          }
+        }
+      });
+    </script>
+    <script type="text/javascript">
+      new Vue({
+        el: "#app",
+        components: {
+          myRow: {
+            template: "<tr><td>123456</td></tr>"
+          }
+        }
+      });
+    </script>
+  </body>
+</html>

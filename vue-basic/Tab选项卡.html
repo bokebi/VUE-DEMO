@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>初识Vue</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/css">
+		*{ margin: 0; padding: 0;}
+		#app{ padding-bottom: 10px;}
+		#app ul{ list-style: none; display: flex; justify-content: space-around; padding-bottom: 10px;}
+		#app li.active{ color: red;}
+		</style>
+	</head>
+
+	<body>
+		<div id="app">
+	        <ul>
+	            <li 
+	            v-for="(item,index) in tabs" 
+	            :class="{active:index == num}"
+	             @click="tab(index)">{{item}}</li>
+	        </ul>
+	        <div class="tabCon">
+	            <div 
+	            v-for='(itemCon,index) in tabContents' 
+	            v-show=" index == num">{{itemCon}}</div>
+	        </div>
+	    </div>
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	var vm = new Vue({
+	    el: '#app',
+	    data: {
+	        tabs: ["标题一", "标题二","标题三"],
+	        tabContents: ["内容一", "内容二","内容三"],
+	        num: 1
+	    },
+	    methods: {
+	        tab(index) {
+	            this.num = index;
+	        }
+	    }
+	});
+	</script>
+
+</html>

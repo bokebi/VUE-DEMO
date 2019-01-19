@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>初识Vue</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style type="text/scss" lang="scss" scoped>
+			/* Outside Comment */ header { padding:20px; } header h1 { /* Nesting */ font-size:24px; _font-size: 25px; *font-size: 26px; -webkit-box-shadow: 0 0 0 rgba(0,0,0,0.9); -ms-box-shadow: 0 0 0 rgba(0,0,0,0.9); -moz-box-shadow: 0 0 0 rgba(0,0,0,0.9); -o-box-shadow: 0 0 0 rgba(0,0,0,0.9); box-shadow: 0 0 0 rgba(0,0,0,0.9); } header h1 a { text-decoration:none; } header h1 a:hover { /* Pseudo-classes */ text-decoration:underline; /* Data URL */ background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABAQMAAAAl21bKAAAAA1BMVEUAAACnej3aAAAAAXRSTlMAQObYZgAAAApJREFUCNdjYAAAAAIAAeIhvDMAAAAASUVORK5CYII=) 0 0 no-repeat; } header h1 a:hover span { color: #f00; } header img { border:none; } header img.glow { /* Classes */ border:solid 1px #f00; }
+		</style>
+	</head>
+
+	<body>
+		<template>
+			<div class="dealRecord-wrap">
+				<div class="title-contant" v-for="(item,index) in items ">
+
+					<div class="title" @click="showHide(index)">
+
+						<h3>2018年0{{index+6}}月</h3>
+
+						<div class="number">800笔<i></i></div>
+
+					</div>
+
+					<div class="contant">
+
+						<ul>
+
+							<li v-for="i in item.allNumber">
+								{{index+6}}
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</template>
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	<script>
+		export default {
+			data() {
+				return {
+					items: [{
+							v: 'qqq',
+							allNumber: 1
+						},
+
+						{
+							v: 'aaa',
+							allNumber: 2
+						},
+
+						{
+							v: 'qqq',
+							allNumber: 3
+						},
+
+					],
+				}
+			},
+			created() {
+				document.body.style.backgroundColor = '#f6f6f6';
+			},
+
+			mounted() {
+
+				for(var i = 0; i < 3; i++) { //这里取值自后台返回的长度,设置页面渲染完成后是否展开，此处不展开
+
+					document.getElementsByClassName('contant')[i].style.height = '0px';
+
+				}
+
+			},
+
+			components: {
+
+			},
+
+			methods: {
+
+				showHide(index) { //点击展开收起
+
+					let contant = document.getElementsByClassName('contant')[index]; //这里我们通过参数index来让浏览器判断你点击的是哪一个列表  
+
+					let height = contant.getBoundingClientRect().height; //获取页面元素的当前高度
+
+					document.getElementsByTagName('i')[index].style.transform = !!height ? 'rotateX(0deg)' : 'rotateX(180deg)';
+
+					if(!!height) {
+
+						contant.style.height = height + 'px';
+
+						let f = document.body.offsetHeight; //强制相应dom重绘，使最新的样式得到应用
+
+						contant.style.height = '0px';
+
+					} else {
+
+						contant.style.height = 'auto';
+
+						height = contant.getBoundingClientRect().height;
+
+						contant.style.height = '0';
+
+						let f = document.body.offsetHeight;
+
+						contant.style.height = height + 'px';
+
+					}
+				}
+			},
+
+			beforeDestroy() {
+				document.body.style.backgroundColor = '#fff';
+			}
+		}
+	</script>
+
+</html>

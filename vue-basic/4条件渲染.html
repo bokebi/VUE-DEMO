@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>条件渲染</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+	<body>
+		
+		<div id="app1">
+			<p v-if="ok">yes</p>
+			<p v-else>no</p>
+		</div>
+		
+		<!--用 key 管理可复用的元素-->
+		<div id="app2" class="demo">
+		  <div>
+		    <template v-if="loginType === 'username'">
+		      <label>Username</label>
+		      <input placeholder="Enter your username" key="username-input">
+		    </template>
+		    <template v-else>
+		      <label>Email</label>
+		      <input placeholder="Enter your email address" key="email-input">
+		    </template>
+		  </div>
+		  <button @click="toggleLoginType">Toggle login type</button>
+		</div>
+		
+		<div id="app3">
+			<p v-show="show">显示</p>
+			<p v-show="hide">隐藏</p>
+		</div>
+		
+			
+		<!--列表渲染 v-for -->
+		<ul id="app4">
+			<li v-for="(item,index) in items">
+				{{index}}-{{item.message}}
+			</li>
+		</ul>
+		
+		<!--一个对象的 v-for-->
+		<ul id="app5">
+			<li v-for="value of object">
+				{{value}}
+			</li>
+		</ul>
+		
+		<ul id="app6">
+			<li v-for="(value, key) of object">
+				{{key}} : {{value}}
+			</li>
+		</ul>
+		
+		<ul id="app7">
+			<li v-for="(value, key, index) of object">
+				{{index}}. {{key}} : {{value}}
+			</li>
+		</ul>
+		
+		<!--key的工作方式类似于一个属性，所以你需要用 v-bind 来绑定动态值 (在这里使用简写)-->
+		<div v-for="item in items" :key="item.id">
+		  <!-- 内容 -->
+		</div>
+		
+		<ul id="app8">
+			<li v-for="value of userProfile">{{value}}</li>
+		</ul>
+	</body>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript">
+		var app1 = new Vue({
+			el: '#app1',
+			data: {
+				ok: true
+			}
+		});
+		
+		var app2 = new Vue({
+		  el: '#app2',
+		  data: {
+		    loginType: 'username'
+		  },
+		  methods: {
+		    toggleLoginType: function () {
+		      return this.loginType = this.loginType === 'username' ? 'email' : 'username'
+		    }
+		  }
+		});
+		
+		var app3 = new Vue({
+			el: '#app3',
+			data: {
+				show: true,
+				hide: false
+			}
+		});
+		
+		var app4 = new Vue({
+			el: '#app4',
+			data: {
+				items: [
+					{ message: 'aaa'},
+					{ message: 'bbb'}
+				]
+			}
+		});
+		
+		var app5 =  new Vue({
+			el: '#app5',
+			data: {
+				object: {
+					firstName: 'Jones',
+					lastName: 'Due',
+					age: 30
+				}
+			}
+		});
+		
+		var app6 =  new Vue({
+			el: '#app6',
+			data: {
+				object: {
+					firstName: 'Jones',
+					lastName: 'Due',
+					age: 30
+				}
+			}
+		});
+		
+		var app7 = new Vue({
+			el: '#app7',
+			data: {
+				object: {
+					firstName : 'Jones',
+					lastName: 'Due',
+					age: 30
+				}
+			}
+		});
+		
+		var app8 = new Vue({
+			el: '#app8',
+			data: {
+				userProfile: {
+					name: 'zhangsan'
+				}
+			}
+		});
+		//对于已经创建的实例，Vue 不能动态添加根级别的响应式属性。但是，可以使用 Vue.set(object, key, value) 方法向嵌套对象添加响应式属性。
+		
+		//你可以添加一个新的 age 属性到嵌套的 userProfile 对象
+		Vue.set(app8.userProfile,'age','30');
+		
+		//你还可以使用 app8.$set 实例方法，它只是全局 Vue.set 的别名：
+		app8.$set(app8.userProfile, 'sex', '男');
+		
+		
+	</script>
+</html>
+

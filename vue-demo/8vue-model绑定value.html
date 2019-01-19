@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+    <style>
+        [v-cloak] {
+            display: none;
+        }  
+        .red {
+            color: red;
+        }
+        .blue {
+            background: #ccc;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+    <div id="demo">
+        <!-- 当选中时，`picked` 为字符串 "a" -->
+        <!-- <input type="radio" v-model="picked" value="a" /> -->
+        <!-- `toggle` 为 true 或 false -->
+        <!-- <input type="checkbox" v-model="toggle" /> -->
+        <!-- 当选中时，`selected` 为字符串 "abc" -->
+       <!--  <select v-model="selected">
+        <option value="abc">ABC</option>
+        </select> -->
+        <br>
+        <!-- 当选中时，`picked` 为字符串 "a" -->
+        <input type="radio" v-model="toggle" v-bind:true-value="a" v-bind:false-value="b">
+        <!-- `toggle` 为 true 或 false -->
+        <input type="checkbox" v-model="pick" v-bind:value="a">
+        <!-- 当选中时，`selected` 为字符串 "abc" -->
+        <select v-model="selected">
+            <option value="abc">ABC</option>
+        </select>
+      
+        <input v-model.lazy="msg" >
+        <br><span>只有在input输入框blur时才触发 {{ msg }} </span>
+
+        <input type="number" v-model:number="age">
+        <br><span>age: {{age}}</span>
+        <br>
+        <input type="text" name="" id="" v-model:trim="space">
+        <br><span>age: {{space}}</span>
+        <br>
+        <span v-pre>跳过编译，显示原始语法{{msg}}</span><br>
+        <span v-cloak>{{msg}}</span><br>
+        <span v-once>This will never change: {{msg}}</span>
+    </div>
+    <script type="text/javascript">
+      var app = new Vue({
+        el: "#demo",
+        data: {
+          picked: "a",
+          toggle: true,
+          selected: true,
+          msg: 'hello',
+          age: '12',
+          space: '   前后有空格    ',
+        }
+      });
+    </script>
+  </body>
+</html>

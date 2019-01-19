@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="box">
+        <input type="button" value="按钮" @keydown="show($event)"/>
+        <input type="button" value="按钮" @keyup="show2($event)"/>
+    </div>
+    <script type="text/javascript">
+
+        new Vue({
+            el: '#box',
+            data: {
+               
+            },
+            methods:{
+                show: function(ev){
+                    console.log(ev.keyCode);
+                },
+                show2: function(ev){
+                    console.log(ev.keyCode);
+                }
+            }
+        })
+    </script>
+</body>
+</html>

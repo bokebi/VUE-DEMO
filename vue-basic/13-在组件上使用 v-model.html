@@ -1,0 +1,76 @@
+<!--
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+  	<meta charset="UTF-8">
+  	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+  	<title>Document</title>
+  </head>
+  <body>
+  	<div id="demo">
+  		<currency-input v-model="price"></currentcy-input>
+  		<span>{{price}}</span>
+  	  </div>
+  	<script src="js/vue.js"></script>
+  	<script>
+  // 在给 <input /> 元素添加 v-model 属性时，默认会把 value 作为元素的属性，然后把 'input' 事件作为实时传递 value 的触发事件
+  		Vue.component('currency-input', {
+  		  template: `
+  			<span>
+  			  <input
+  				ref="input"
+  				:value="value"
+  				@input="$emit('input', $event.target.value)"
+  			  >
+  			  <p>{{value}}</p>
+  			</span>
+  		  `,
+  		  props: ['value'],// 为什么这里要用 value 属性，value在哪里定义的？貌似没找到啊？
+  		})
+
+  		var demo = new Vue({
+  		  el: '#demo',
+  		  data: {
+  			price: 100,
+  		  }
+  		})
+  		</script>
+  </body>
+  </html>
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Document</title>
+  </head>
+  <body>
+    <div id="demo">
+      <custom-input v-model="searchText"></custom-input>
+      <span>{{ searchText }}</span>
+    </div>
+    <script src="js/vue.js"></script>
+    <script>
+      Vue.component("custom-input", {
+        props: ["value"],
+        template: `
+      				<input
+      				v-bind:value="value"
+      				v-on:input="$emit('input', $event.target.value)"
+      				>
+      			`
+      });
+
+      var demo = new Vue({
+        el: "#demo",
+        data: {
+          searchText: 100
+        }
+      });
+    </script>
+  </body>
+</html>

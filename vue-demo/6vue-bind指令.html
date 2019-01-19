@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .red{ color: red;}
+    .blue{ background: #ccc;}
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="demo">
+        <span :class = "{red: a, blue: b}">绑定class……</span><br>
+        <span :style="[color,bg]">绑定style……</span><br>
+        <span :style="o">文字……</span><br>
+        <a  href="#" :href="hrefvalue">
+            <img v-bind:class="c" :width='w' src="../img/logo.jpg" alt="">
+        </a>
+    </div>
+    <script>
+        var app=new Vue({
+            el:'#demo',
+            data:{
+                hrefvalue:'http://www.baidu.com',
+                c:'myred',
+                w: '100px',
+                a: true,
+                b: false,
+                color:{'color':'red'},
+                bg:{'backgroundColor':'lightgrey'},
+                o: {
+                    color:'red',
+                    background:'lightgrey'
+                }
+            }
+        });
+    </script>
+</body>
+</html>

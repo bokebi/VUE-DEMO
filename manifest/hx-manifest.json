@@ -1,0 +1,729 @@
+{
+    "@platforms" : [ "android", "iPhone", "iPad" ],
+    "id" : "H548C6A5F", /*应用的标识，创建应用时自动生成，勿手动修改*/
+    "name" : "公选王", /*应用名称，程序桌面图标名称*/
+    "version" : {
+        "name" : "1.0.6", /*应用版本名称*/
+        "code" : 86
+    },
+    "description" : "", /*应用描述信息*/
+    "icons" : {
+        "72" : "icon.png"
+    },
+    "launch_path" : "index.html", /*应用的入口页面，默认为根目录下的index.html；支持网络地址，必须以http://或https://开头*/
+    "developer" : {
+        "name" : "", /*开发者名称*/
+        "email" : "", /*开发者邮箱地址*/
+        "url" : ""
+    },
+    "permissions" : {
+        "Cache" : {
+            "description" : "管理应用缓存"
+        },
+        "Console" : {
+            "description" : "跟踪调试输出日志"
+        },
+        "Events" : {
+            "description" : "应用扩展事件"
+        },
+        "OAuth" : {},
+        "Payment" : {
+            "description" : "管理支付插件"
+        },
+        "Share" : {},
+        "VideoPlayer" : {}
+    },
+    "plus" : {
+        "statusbar" : {
+            "immersed" : true
+        },
+        "popGesture" : "close",
+        "splashscreen" : {
+            "autoclose" : false, /*是否自动关闭程序启动界面，true表示应用加载应用入口页面后自动关闭；false则需调plus.navigator.closeSplashscreen()关闭*/
+            "waiting" : true
+        },
+        "runmode" : "liberate", /*应用的首次启动运行模式，可取liberate或normal，liberate模式在第一次启动时将解压应用资源（Android平台File API才可正常访问_www目录）*/
+        "signature" : "59201CF6589202CB2CDAB26752472112", /*可选，保留给应用签名，暂不使用*/
+        "distribute" : {
+            "plugins" : {
+                "oauth" : {
+                    "weixin" : {
+                        "appid" : "wxa5734ece06a67619",
+                        "appsecret" : "570cd537bfcc445fd878669b3338a83f"
+                    },
+                    "qq" : {
+                        "appid" : "101521911"
+                    }
+                },
+                "share" : {
+                    "qq" : {
+                        "appid" : "101521911",
+                        "description" : "QQ分享"
+                    },
+                    "weixin" : {
+                        "appid" : "wxa5734ece06a67619",
+                        "appsecret" : "570cd537bfcc445fd878669b3338a83f",
+                        "description" : "可选，微信分享"
+                    }
+                },
+                "payment" : {
+                    "weixin" : {
+                        "description" : "微信支付",
+                        "appid" : "wxa5734ece06a67619"
+                    },
+                    "alipay" : {
+                        "description" : "支付宝支付",
+                        "scheme" : "gxwapp2018alipay"
+                    }
+                }
+            },
+            "apple" : {
+                "appid" : "", /*iOS应用标识，苹果开发网站申请的appid，如io.dcloud.HelloH5*/
+                "mobileprovision" : "", /*iOS应用打包配置文件*/
+                "password" : "", /*iOS应用打包个人证书导入密码*/
+                "p12" : "", /*iOS应用打包个人证书，打包配置文件关联的个人证书*/
+                "devices" : "universal", /*iOS应用支持的设备类型，可取值iphone/ipad/universal*/
+                "UIReserveStatusbarOffset" : true, /*（apple节点下添加）*/
+                "urltypes" : [
+                    {
+                        "urlidentifier" : "com.gongxuanwang.linxuan",
+                        "urlschemes" : [ "gongxuanwang" ]
+                    }
+                ],
+                "frameworks" : [],
+                "privacyDescription" : {
+                    "NSPhotoLibraryAddUsageDescription" : "保存文章内的图片到本地"
+                }
+            },
+            "google" : {
+                "packagename" : "", /*Android应用包名，如io.dcloud.HelloH5*/
+                "keystore" : "", /*Android应用打包使用的密钥库文件*/
+                "password" : "", /*Android应用打包使用密钥库中证书的密码*/
+                "aliasname" : "", /*Android应用打包使用密钥库中证书的别名*/
+                "hardwareAccelerated" : true,
+                "ImmersedStatusbar" : true, /*设置为沉浸栏模式（goole节点下添加）*/
+                "permissions" : [
+                    "<uses-permission android:name=\"android.permission.ACCESS_NETWORK_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.ACCESS_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.CALL_PHONE\"/>",
+                    "<uses-permission android:name=\"android.permission.CHANGE_WIFI_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.INTERNET\"/>",
+                    "<uses-permission android:name=\"android.permission.MODIFY_AUDIO_SETTINGS\"/>",
+                    "<uses-permission android:name=\"android.permission.MOUNT_UNMOUNT_FILESYSTEMS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_LOGS\"/>",
+                    "<uses-permission android:name=\"android.permission.READ_PHONE_STATE\"/>",
+                    "<uses-permission android:name=\"android.permission.WAKE_LOCK\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_EXTERNAL_STORAGE\"/>",
+                    "<uses-permission android:name=\"android.permission.WRITE_SETTINGS\"/>"
+                ]
+            },
+            "orientation" : [ "portrait-primary", "landscape-primary" ], /*应用支持的方向，portrait-primary：竖屏正方向；portrait-secondary：竖屏反方向；landscape-primary：横屏正方向；landscape-secondary：横屏反方向*/
+            "icons" : {
+                "ios" : {
+                    "prerendered" : true, /*应用图标是否已经高亮处理，在iOS6及以下设备上有效*/
+
+                    /*应用图标，分辨率：512x512，用于自动生成各种尺寸程序图标*/
+                    "iphone" : {
+                        "normal" : "", /*iPhone普通屏幕程序图标，分辨率：57x57*/
+                        "retina" : "", /*iPhone高分屏程序图标，分辨率：114x114*/
+
+                        /*iPhone iOS7高分屏程序图标，分辨率：120x120*/
+                        "spotlight-normal" : "", /*iPhone Spotlight搜索程序图标，分辨率：29x29*/
+                        "spotlight-retina" : "", /*iPhone高分屏Spotlight搜索程序图标，分辨率：58x58*/
+
+                        /*iPhone iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*/
+                        "settings-normal" : "", /*iPhone设置页面程序图标，分辨率：29x29*/
+                        "app@2x" : "unpackage/res/icons/120x120.png",
+                        "app@3x" : "unpackage/res/icons/180x180.png",
+                        "settings@3x" : "unpackage/res/icons/87x87.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "spotlight@3x" : "unpackage/res/icons/120x120.png",
+                        "notification@3x" : "unpackage/res/icons/60x60.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png"
+                    },
+                    "ipad" : {
+                        "normal" : "", /*iPad普通屏幕程序图标，分辨率：72x72*/
+                        "retina" : "", /*iPad高分屏程序图标，分辨率：144x144*/
+
+                        /*iPad iOS7程序图标，分辨率：76x76*//*iPad iOS7高分屏程序图标，分辨率：152x152*/
+                        "spotlight-normal" : "", /*iPad Spotlight搜索程序图标，分辨率：50x50*/
+                        "spotlight-retina" : "", /*iPad高分屏Spotlight搜索程序图标，分辨率：100x100*/
+
+                        /*iPad iOS7 Spotlight搜索程序图标，分辨率：40x40*//*iPad iOS7高分屏Spotlight搜索程序图标，分辨率：80x80*//*iPad设置页面程序图标，分辨率：29x29*/
+                        "app" : "unpackage/res/icons/76x76.png",
+                        "app@2x" : "unpackage/res/icons/152x152.png",
+                        "settings" : "unpackage/res/icons/29x29.png",
+                        "proapp@2x" : "unpackage/res/icons/167x167.png",
+                        "spotlight" : "unpackage/res/icons/40x40.png",
+                        "settings@2x" : "unpackage/res/icons/58x58.png",
+                        "spotlight@2x" : "unpackage/res/icons/80x80.png",
+                        "notification" : "unpackage/res/icons/20x20.png",
+                        "notification@2x" : "unpackage/res/icons/40x40.png"
+                    },
+                    "appstore" : "unpackage/res/icons/1024x1024.png"
+                },
+                "android" : {
+                    "mdpi" : "unpackage/res/icons/48x48.png", /*普通屏程序图标，分辨率：48x48*/
+                    "ldpi" : "unpackage/res/icons/48x48.png", /*大屏程序图标，分辨率：48x48*/
+                    "hdpi" : "unpackage/res/icons/72x72.png", /*高分屏程序图标，分辨率：72x72*/
+                    "xhdpi" : "unpackage/res/icons/96x96.png", /*720P高分屏程序图标，分辨率：96x96*/
+                    "xxhdpi" : "unpackage/res/icons/144x144.png",
+                    "xxxhdpi" : "unpackage/res/icons/192x192.png"
+                }
+            },
+            "splashscreen" : {
+                "ios" : {
+                    "iphone" : {
+                        "default" : "", /*iPhone3启动图片选，分辨率：320x480*/
+
+                        /*3.5英寸设备(iPhone4)启动图片，分辨率：640x960*/
+                        "retina40" : "images/640.png",
+                        "retina47" : "images/750.png",
+                        "iphonex" : "images/1125.png",
+                        "retina55" : "images/1242.png"
+                    },
+                    "ipad" : {
+                        "portrait" : "", /*iPad竖屏启动图片，分辨率：768x1004*/
+                        "portrait-retina" : "", /*iPad高分屏竖屏图片，分辨率：1536x2008*/
+                        "landscape" : "", /*iPad横屏启动图片，分辨率：1024x748*/
+                        "landscape-retina" : "", /*iPad高分屏横屏启动图片，分辨率：2048x1496*/
+                        "portrait7" : "", /*iPad iOS7竖屏启动图片，分辨率：768x1024*/
+                        "portrait-retina7" : "", /*iPad iOS7高分屏竖屏图片，分辨率：1536x2048*/
+                        "landscape7" : "", /*iPad iOS7横屏启动图片，分辨率：1024x768*/
+                        "landscape-retina7" : ""
+                    }
+                },
+                "android" : {
+                    "mdpi" : "", /*普通屏启动图片，分辨率：240x282*/
+                    "ldpi" : "", /*大屏启动图片，分辨率：320x442*/
+
+                    /*高分屏启动图片，分辨率：480x762*/
+                    "xhdpi" : "images/720.png", /*720P高分屏启动图片，分辨率：720x1242*/
+                    "xxhdpi" : "images/1080.png"
+                }
+            }
+        },
+        "ads" : {
+            "rp" : false,
+            "splash" : false,
+            "push" : false
+        }
+    },
+    "dependencies" : {
+        "pages" : {
+            "src/templates/tab/bought.html" : {
+                "href" : "src/templates/tab/bought.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/tab.css",
+                    "images/ic_index_sel@2x.png",
+                    "images/ic_index_nor@2x.png",
+                    "images/ic_buy_sel@2x.png",
+                    "images/ic_buy_nor@2x.png",
+                    "images/ic_users_sel@2x.png",
+                    "images/ic_users_nor@2x.png",
+                    "js/mui.min.js",
+                    "images/noProducts.png",
+                    "images/course_pic3.jpg",
+                    "images/book_pic1.jpg"
+                ],
+                "priority" : 0,
+                "refer" : [
+                    "src/templates/courseDetail/courseDetail.html",
+                    "src/templates/eBook/eBookDetail.html"
+                ]
+            },
+            "src/templates/tab/member.html" : {
+                "href" : "src/templates/tab/member.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/tab.css",
+                    "images/ic_index_sel@2x.png",
+                    "images/ic_index_nor@2x.png",
+                    "images/ic_buy_sel@2x.png",
+                    "images/ic_buy_nor@2x.png",
+                    "images/ic_users_sel@2x.png",
+                    "images/ic_users_nor@2x.png",
+                    "js/mui.min.js",
+                    "images/avar.png",
+                    "images/arr_right.png",
+                    "images/icon_xx.png",
+                    "images/icon_sch.png",
+                    "images/icon_note.png",
+                    "images/icon_vip.png",
+                    "images/icon_help.png",
+                    "images/rank_zs.png",
+                    "images/men_ava.png",
+                    "images/women_ava.png"
+                ],
+                "priority" : 1,
+                "refer" : [
+                    "src/templates/member/consultant.html",
+                    "src/templates/member/memberVip.html",
+                    "src/templates/member/collection.html",
+                    "src/templates/member/myOrder.html",
+                    "src/logReg/login.html",
+                    "src/templates/member/set.html",
+                    "src/templates/member/memberInfo.html"
+                ]
+            },
+            "src/templates/search/search.html" : {
+                "href" : "src/templates/search/search.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js",
+                    "images/icon_sr.png"
+                ],
+                "priority" : 2,
+                "refer" : [
+                    "src/templates/search/result.html",
+                    "src/templates/news/detail.html",
+                    "src/templates/eBook/eBookDetail.html"
+                ]
+            },
+            "src/templates/columns/bookCity.html" : {
+                "href" : "src/templates/columns/bookCity.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js",
+                    "images/arr_right.png",
+                    "images/book_pic1.jpg",
+                    "images/book_pic2.jpg",
+                    "images/book_pic3.jpg"
+                ],
+                "priority" : 3,
+                "refer" : [
+                    "src/templates/eBook/eBookDetail.html",
+                    "src/templates/search/search.html"
+                ]
+            },
+            "src/templates/news/columnTab.html" : {
+                "href" : "src/templates/news/columnTab.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js",
+                    "images/filter.png"
+                ],
+                "priority" : 4,
+                "refer" : [
+                    "src/templates/news/detail.html",
+                    "src/templates/news/selectionTopic.html"
+                ]
+            },
+            "src/templates/columns/columns.html" : {
+                "href" : "src/templates/columns/columns.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js",
+                    "images/ic_lxzx@2x.png",
+                    "images/ic_lxzt@2x.png",
+                    "images/ic_cktx@2x.png",
+                    "images/ic_kdjj@2x.png",
+                    "images/ic_zl_dz@2x.png",
+                    "images/icon_tk.png"
+                ],
+                "refer" : [
+                    "src/templates/news/columnTab.html",
+                    "src/templates/news/lxzt_Tab.html",
+                    "src/templates/news/kdjj_Tab.html",
+                    "src/templates/news/cktx_Tab.html",
+                    "src/templates/news/detail.html",
+                    "src/templates/search/search.html"
+                ],
+                "priority" : 4
+            },
+            "src/templates/news/detail.html" : {
+                "href" : "src/templates/news/detail.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js"
+                ],
+                "priority" : 5,
+                "refer" : [ "src/templates/member/memberVip.html", "src/logReg/login.html" ]
+            },
+            "src/templates/columns/course.html" : {
+                "href" : "src/templates/columns/course.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js",
+                    "images/course_pic1.jpg",
+                    "images/course_pic2.jpg",
+                    "images/course_pic3.jpg"
+                ],
+                "priority" : 6,
+                "refer" : [ "src/templates/courseDetail/courseDetail.html" ]
+            },
+            "src/templates/columns/questionBank.html" : {
+                "href" : "src/templates/columns/questionBank.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/style.css",
+                    "images/tk_bg.png",
+                    "js/mui.min.js",
+                    "js/jquery.min.js",
+                    "images/icon_ttyl.png",
+                    "images/icon_sch.png",
+                    "images/icon_xtlx.png",
+                    "images/icon_edit.png"
+                ],
+                "priority" : 7,
+                "refer" : [
+                    "src/templates/tiku/exercises.html",
+                    "src/templates/tiku/wrongCollection.html",
+                    "src/templates/tiku/exercisesNote.html",
+                    "src/templates/tiku/exercisesHistory.html",
+                    "src/logReg/login.html",
+                    "src/templates/tiku/exercisesTaoti.html",
+                    "src/templates/tiku/shortAnswer.html",
+                    "src/templates/tab/home.html"
+                ]
+            },
+            "src/templates/tab/home.html" : {
+                "href" : "src/templates/tab/home.html",
+                "resources" : [
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/reset.css",
+                    "css/tab.css",
+                    "images/ic_index_sel@2x.png",
+                    "images/ic_index_nor@2x.png",
+                    "images/ic_buy_sel@2x.png",
+                    "images/ic_buy_nor@2x.png",
+                    "images/ic_users_sel@2x.png",
+                    "images/ic_users_nor@2x.png",
+                    "js/mui.min.js",
+                    "images/icon_msg.png",
+                    "images/icon_sr.png",
+                    "images/banner_pic2.jpg",
+                    "images/banner_pic1.jpg",
+                    "images/icon_zx.png",
+                    "images/icon_tk.png",
+                    "images/icon_sk.png",
+                    "images/icon_xs.png",
+                    "images/icon_zl.jpg",
+                    "images/icon_tk.jpg",
+                    "images/icon_kc.jpg",
+                    "images/icon_sc.jpg",
+                    "images/course_pic1.jpg",
+                    "images/course_pic2.jpg",
+                    "images/course_pic3.jpg",
+                    "images/book_pic1.jpg",
+                    "images/book_pic2.jpg",
+                    "images/book_pic3.jpg",
+                    "images/a1.png",
+                    "images/icon_tiku.png",
+                    "images/iicon_kc.png",
+                    "css/swiper.min.css",
+                    "images/icon_zl.png",
+                    "css/mui.css"
+                ],
+                "refer" : [
+                    "src/templates/search/search.html",
+                    "src/templates/columns/bookCity.html",
+                    "src/templates/columns/columns.html",
+                    "src/templates/news/detail.html",
+                    "src/templates/columns/course.html",
+                    "src/templates/columns/questionBank.html",
+                    "src/templates/notice/notice.html",
+                    "src/templates/columns/mall.html",
+                    "src/templates/courseDetail/courseDetail.html",
+                    "src/templates/eBook/eBookDetail.html",
+                    "src/templates/courseDetail/mallDetail.html",
+                    "src/templates/tiku/oneTestPaper.html",
+                    "src/templates/tiku/onTestPaperAnalysis.html",
+                    "src/templates/tiku/taotiOrder.html",
+                    "src/templates/tab/update.html"
+                ],
+                "priority" : 2
+            },
+            "index.html" : {
+                "href" : "index.html",
+                "resources" : [
+                    "js/mui.min.js",
+                    "css/mui.min.css",
+                    "fonts/mui.ttf",
+                    "css/tab.css",
+                    "images/ic_index_sel@2x.png",
+                    "images/ic_index_nor@2x.png",
+                    "images/ic_buy_sel@2x.png",
+                    "images/ic_buy_nor@2x.png",
+                    "images/ic_users_sel@2x.png",
+                    "images/ic_users_nor@2x.png",
+                    "src/templates/tab/home.html",
+                    "src/templates/tab/bought.html",
+                    "src/templates/tab/member.html"
+                ],
+                "refer" : [ "guide.html" ],
+                "priority" : 0
+            },
+            "src/templates/typeArea/examArea.html" : {
+                "resources" : [],
+                "refer" : [ "index.html" ],
+                "priority" : 0
+            },
+            "src/templates/typeArea/examType.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/typeArea/examArea.html" ],
+                "priority" : 0
+            },
+            "guide.html" : {
+                "resources" : [ "css/mui.min.css", "css/mui.css" ],
+                "refer" : [ "src/templates/typeArea/examType.html", "index.html" ],
+                "priority" : 0
+            },
+            "src/logReg/login.html" : {
+                "resources" : [],
+                "refer" : [
+                    "index.html",
+                    "src/logReg/register.html",
+                    "src/templates/tab/member.html",
+                    "src/logReg/forgetPwd.html",
+                    "src/logReg/bindAccount.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/member/set.html" : {
+                "resources" : [],
+                "refer" : [
+                    "index.html",
+                    "src/templates/member/help.html",
+                    "src/templates/member/aboutUs.html",
+                    "src/templates/member/feedback.html",
+                    "src/logReg/login.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/member/memberInfo.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/member/security.html",
+                    "src/templates/member/changePwd.html"
+                ],
+                "priority" : 0
+            },
+            "src/logReg/register.html" : {
+                "resources" : [],
+                "refer" : [ "src/logReg/finishReg.html", "src/templates/member/protocol.html" ],
+                "priority" : 0
+            },
+            "src/logReg/forgetPwd.html" : {
+                "resources" : [],
+                "refer" : [ "src/logReg/setPwd.html" ],
+                "priority" : 0
+            },
+            "src/templates/member/memberVip.html" : {
+                "resources" : [],
+                "refer" : [ "src/logReg/login.html", "src/templates/member/vipOrder.html" ],
+                "priority" : 0
+            },
+            "src/templates/courseDetail/courseDetail.html" : {
+                "resources" : [ "js/tpl/courseDetail.js" ],
+                "refer" : [
+                    "src/templates/courseDetail/courseOrder.html",
+                    "src/templates/courseDetail/video.html",
+                    "src/logReg/login.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/eBook/eBookDetail.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/eBook/catalogTab.html",
+                    "src/templates/eBook/tryRead.html",
+                    "src/pay/pay.html",
+                    "src/templates/eBook/read.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/eBook/catalogTab.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/eBook/read.html" ],
+                "priority" : 0
+            },
+            "src/templates/eBook/read.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/eBook/catalogTab.html" ],
+                "priority" : 0
+            },
+            "src/templates/member/consultant.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/member/consultantDetail.html" ],
+                "priority" : 0
+            },
+            "src/templates/news/lxzt_Tab.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/news/detail.html" ],
+                "priority" : 0
+            },
+            "src/templates/news/kdjj_Tab.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/news/detail.html" ],
+                "priority" : 0
+            },
+            "src/templates/columns/mall.html" : {
+                "resources" : [ "css/style.css" ],
+                "refer" : [
+                    "src/templates/courseDetail/mallDetail.html",
+                    "src/templates/search/search.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/courseDetail/mallDetail.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/courseDetail/mallOrder.html", "src/logReg/login.html" ],
+                "priority" : 0
+            },
+            "src/templates/member/myOrder.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/member/orderDetail.html" ],
+                "priority" : 0
+            },
+            "src/templates/member/collection.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/news/detail.html",
+                    "src/templates/courseDetail/courseDetail.html",
+                    "src/templates/courseDetail/mallDetail.html",
+                    "src/templates/eBook/eBookDetail.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/news/cktx_Tab.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/news/detail.html" ],
+                "priority" : 0
+            },
+            "src/templates/tiku/exercises.html" : {
+                "resources" : [ "js/tpl/exercises.js" ],
+                "refer" : [
+                    "src/templates/tiku/errorCorrection.html",
+                    "src/templates/tiku/exercisesResult.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/tiku/exercisesResult.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/tiku/mistakeRevolution.html",
+                    "src/templates/columns/questionBank.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/tiku/mistakeRevolution.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/tiku/errorCorrection.html" ],
+                "priority" : 0
+            },
+            "src/templates/member/help.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/member/helpDetail.html" ],
+                "priority" : 0
+            },
+            "src/templates/member/orderDetail.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/member/myOrder.html" ],
+                "priority" : 0
+            },
+            "src/logReg/bindAccount.html" : {
+                "resources" : [],
+                "refer" : [ "src/logReg/bindExAccount.html", "src/logReg/createNewAccount.html" ],
+                "priority" : 0
+            },
+            "src/templates/tiku/oneTestPaper.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/tiku/errorCorrection.html" ],
+                "priority" : 0
+            },
+            "src/templates/tiku/exercisesTaoti.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/tiku/oneTestPaper.html",
+                    "src/templates/tiku/onTestPaperAnalysis.html",
+                    "src/templates/tiku/taotiOrder.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/tiku/exercisesHistory.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/tiku/onTestPaperAnalysis.html",
+                    "src/templates/tiku/exercisesHistoryDetail.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/tiku/wrongCollection.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/tiku/onesCategoryQuestionDetails.html" ],
+                "priority" : 0
+            },
+            "src/templates/search/result.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/news/detail.html",
+                    "src/templates/courseDetail/courseDetail.html",
+                    "src/templates/courseDetail/mallDetail.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/member/consultantDetail.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/member/consultant.html" ],
+                "priority" : 0
+            },
+            "src/templates/news/selectionTopic.html" : {
+                "resources" : [],
+                "refer" : [
+                    "src/templates/news/detail.html",
+                    "src/templates/news/zt_details.html"
+                ],
+                "priority" : 0
+            },
+            "src/templates/tiku/shortAnswer.html" : {
+                "resources" : [],
+                "refer" : [ "src/templates/tiku/errorCorrection.html" ],
+                "priority" : 0
+            }
+        },
+        "idle" : {
+            "resources" : [
+                "images/icon_set.png",
+                "images/icon_kf.png",
+                "images/icon_sc.png",
+                "images/ic_zl_zx@2x.png",
+                "js/mui.js",
+                "images/icon_qd.png"
+            ]
+        }
+    }
+}
