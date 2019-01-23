@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>prop</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+
+    <div id='app'>
+          <button>{{ totalCounter }}</button>
+          </br>
+          <button-counter v-on:increment-event='total_increment'></button-counter>
+          <button-counter v-on:increment-event='total_increment'></button-counter>
+    </div>
+
+    <script>
+    Vue.component('button-counter', {
+      template: '<button v-on:click="increment">{{counter}}</button>',
+      data: function () {
+        return {
+          counter: 0
+        }
+      },
+
+      methods: {
+        increment: function () {
+          this.counter += 1
+          //调用$emit方法并传入事件的名字，来向父级组件触发一个事件
+          this.$emit('increment-event')
+        }
+      }
+    }) 
+
+    new Vue({
+      el: '#app',
+      data: {
+        totalCounter: 0
+      },
+
+      methods: {
+        total_increment: function () {
+          this.totalCounter += 1
+        }
+      }
+    })
+    </script>
+  </body>
+</html>

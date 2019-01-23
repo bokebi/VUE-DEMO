@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>prop</title>
+    <script src="../js/vue.js"></script>
+  </head>
+  <body>
+
+    <div id='app'>
+        <p>这是slot的内容</p>
+        <son-component>
+            <p>你好，我是slot</p>
+        </son-component>
+    </div>
+
+    <div id='app2'>
+
+        <son-component2>
+  
+          <h1 slot='h1' >我是标题</h1>
+  
+          <button slot='button'>我是按钮</button>
+  
+          <a href='#' slot='a'>我是链接</a>
+  
+        </son-component2>
+  
+   </div>
+    
+    <script>
+    Vue.component('son-component',{
+      template: '<div><slot></slot></div>'
+    });
+    new Vue({
+      el: '#app'
+    });
+
+    Vue.component('son-component2',{
+      template: '<div><slot name="h1"></slot><slot name="button"></slot><slot name="a"></slot></div>'
+    });
+    new Vue({
+      el: '#app'
+    });
+    </script>
+  </body>
+</html>

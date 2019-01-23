@@ -35,6 +35,17 @@
         v-bind:title="post.title"
       ></blog-post>
     </div>
+
+    <div id="demo6">
+      <!-- 自定义组件的属性必须用短横线命名法 -->
+      <my-component name="波克比" birth-time="1997 - 06 - 06"></my-component>
+      <!-- 
+        总结：
+          1.在template选项属性中，可以写驼峰命名法，也可以写短横线命名法
+          2.在HTML（模板）中，只能写短横线命名法，不能写驼峰
+       -->
+    </div>
+
     <script>
     Vue.component('child',{
       props: ['message'],
@@ -88,6 +99,25 @@
           { id: 3, title: 'Why Vue is so fun' }
         ]
       }
+    })
+
+    Vue.component('my-component',{
+      //驼峰命名法
+      props: ['name','birthTime'],  
+      //如果是在注册组件的模板内部，直接通过prop的名称取就OK了
+      template: `
+        <p>我叫：{{name}}，我出生于：{{birthTime}}</p>
+      `,
+      created: function(){
+        //如果在注册组件的其他地方，用this.prop的方式取用
+        console.log('在created钩子函数中被调用');
+        console.log('我叫：' + this.name);
+        console.log('我出生于：' + this.birthTime);
+      }
+    });
+
+    new Vue({
+      el: '#demo6'
     })
     </script>
   </body>

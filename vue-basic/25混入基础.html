@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>mixins基础</title>
+  </head>
+  <body>
+    
+  </body>
+  <script src="js/vue.js"></script>
+  <script>
+   // 定义一个混入对象
+   var myMixin = {
+     created: function(){
+       this.hello();
+     },
+     methods: {
+       hello: function(){
+         console.log("hello from mixin!");
+       }
+     }
+   }
+
+   // 定义一个使用混入对象的组件
+   var Component = Vue.extend({
+     mixins: [myMixin]
+   });
+   var component = new Component();
+
+   //选项合并
+   //在和组件的数据发生冲突时以组件数据优先
+   var myMinxin2 = {
+     data: function(){
+       return {
+         message: 'hello',
+         foo: 'abc'
+       }
+     }
+   }
+   new Vue({
+     mixins: [myMinxin2],
+     data: function(){
+       return {
+         message: 'goodBye',
+         bar: 'def'
+       }
+     },
+     created: function(){
+       console.log(this.$data);
+       // => { message: "goodbye", foo: "abc", bar: "def" }
+     }
+   })
+
+   //混入对象的钩子将在组件自身钩子之前调用
+   var myMixin3 = {
+     created: function(){
+       console.log("混入对象的钩子被调用");
+     }
+   }
+   
+   new Vue({
+     mixins: [myMixin3],
+     created: function(){
+       console.log('组件钩子被调用');
+     }
+   })
+
+   //两个对象键名冲突时，取组件对象的键值对
+   var myMixin4 = {
+     methods: {
+       foo: function(){
+         console.log('foo');
+       },
+       conflicting: function(){
+         console.log('from mixin');
+       }
+     }
+   }
+
+   var vm = new Vue({
+     mixins: [myMixin4],
+     methods: {
+       bar: function(){
+         console.log('bar');
+       },
+       conflicting: function(){
+         console.log('from self');
+       }
+     }
+   })
+   vm.foo() // => "foo"
+   vm.bar() // => "bar"
+   vm.conflicting() // => "from self"
+   
+   
+  
+  </script>
+</html>
