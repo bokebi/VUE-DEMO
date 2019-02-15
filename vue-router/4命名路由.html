@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+    .router-link-active {
+        color: red;
+    }
+    </style>
+</head>
+<body>
+    <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+    <div id="app">
+        <router-view></router-view>
+    </div>
+    <script>
+
+        Vue.use(VueRouter);
+        
+        //1.定义路由组件
+        const Home = { template: '<div>This is Home</div>' }
+        const Foo = { template: '<div>This is Foo</div>' }
+        const Bar = { template: '<div>This is Bar {{ $route.params.id }}</div>' }
+        
+        //要在嵌套的出口中渲染组件，需要在 VueRouter 的参数中使用 children 配置：
+        const router = new VueRouter({
+            mode: 'history',
+            base: __dirname,
+            routes: [
+                { path: '/', name: 'home', component: Home },
+                { path: '/foo', name: 'foo', component: Foo },
+                { path: '/bar/:id', name: 'bar', component: Bar }
+            ]
+        })
+            
+
+        //4.创建和挂载根实例
+        new Vue({
+            router,
+            template: `
+                <div id="app">
+                <h1>Named Routes</h1>
+                <p>Current route name: {{ $route.name }}</p>
+                <ul>
+                    <li><router-link :to="{ name: 'home' }">home</router-link></li>
+                    <li><router-link :to="{ name: 'foo' }">foo</router-link></li>
+                    <li><router-link :to="{ name: 'bar', params: { id: 123 }}">bar</router-link></li>
+                </ul>
+                <router-view class="view"></router-view>
+                </div>
+            `
+        }).$mount('#app')
+
+        //文档中最常用的做法就是直接在实例化的时候利用el:"#app"来挂载元素，利用$mount挂载的方法有一个很大的好处，就是将实例化的内容和他对HTML的关联分开，可以更直观的展现。
+    </script>
+</body>
+</html>
