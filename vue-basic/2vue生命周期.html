@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+    </div>
+    <script>
+        // 生命周期函数就是 Vue实例在某一个时间点自动执行的函数
+        var vm = new Vue({
+            el : "#app",
+            template : "<div>{{message}}</div>",
+            data : {
+                message : "hello world"
+            },
+            // vue实例基础初始化之后，就会触发
+            beforeCreate : function(){
+                console.log("beforeCreate");
+            },
+            created : function(){
+                console.log("created");
+            },
+            // 如果没有template模板，就会将el内的当成模板
+            // 如果有template，就会用template里的东西
+            // beforeMount：当和模板结合，在渲染页面之前的一瞬间，执行beforeMount函数（还没有渲染到页面上————用模板的情况下）
+            beforeMount : function(){
+                console.log(this.$el);
+                console.log("beforeMount");
+            },
+            // 这时候hello World就会渲染在页面上了
+            // mounted就会自动执行（已经渲染了）
+            mounted : function(){
+                console.log(this.$el);                
+                console.log("mounted");
+            },
+            // 实例还没有销毁，在销毁的前一刻
+            // 销毁实例：vm.$destroy()
+            beforeDestroy : function(){
+                console.log("beforeDestory");
+            },
+            // 实例被销毁了
+            destroyed : function(){
+                console.log("destoryed");
+            },
+            // 数据发生改变，还没渲染之前
+            beforeUpdate : function(){
+                console.log("beforeUpdate");
+            },
+            // 数据改变，渲染之后
+            updated : function(){
+                console.log("updated");
+            }
+            
+        })
+    </script>
+</body>
+</html>
