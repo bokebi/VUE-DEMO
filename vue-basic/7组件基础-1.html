@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>组件基础</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="app">
+			<h3>我调用了一次这个组件</h3>
+			<custome></custome>
+		</div>
+
+		<div id="app1">
+			<h3>我还可以再调用这个组件</h3>
+			<custome></custome>
+		</div>
+		
+		<div id="app2">
+			<p>组件命名注意事项：</p>
+			<!-- HTML中调用必须使用短横线命名法(-) -->
+			<one-item></one-item>
+		</div>
+	<body>
+		
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+		//全局组件
+		/* Vue.component('custome',{
+			template: `
+				<p>我是一个自定义组件模板</p>
+			`
+		}); */
+		
+		//注册组件的名称可以是驼峰命名法或者是短横线命名法
+		Vue.component('oneItem',{
+			template: `
+				<p>注意1：HTML中调用必须使用短横线命名法(-)，</p>
+				<p>注意2：注册组件的名称可以是驼峰命名法或者是短横线命名法</p>
+			`
+		});
+		
+		var partA = {template: '<p>我是局部组件</p>'}
+		new Vue({
+			el: '#app',
+			// 局部组件
+			components:{
+				'custome': partA
+			}
+		});
+
+		new Vue({
+			el: '#app1'
+		});
+
+		new Vue({
+			el: '#app2'
+		});
+	</script>
+</html>
