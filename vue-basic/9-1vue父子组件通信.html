@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>vue父子组件通信</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<div id="app">
+			<ff></ff>
+		</div>
+
+		
+
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript">
+		var son = {
+			template: `<div>我是子组件<div>`
+		}
+
+		var father = {
+			template: 
+			//必须用一个根元素包裹，否则报错
+				`<div>		
+					<h4>我是父组件</h4>
+					<ss></ss>
+				</div>`,
+			components: {
+				'ss': son
+			}
+
+		}
+
+		var app = new Vue({
+			el: '#app',
+			components: {
+				//给父组件起个别名，用此名来调用组件
+				'ff': father
+			}
+		})		
+
+	</script>
+
+</html>

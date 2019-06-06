@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>事件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<ul id="app">
+		    <li @click = "clickMe">单击事件</li>
+		    <li @dblclick = "dblclickMe">双击事件</li>
+		    <li @mouseover = "mouseover">鼠标移入事件</li>
+		    <li @mouseout = "mouseout">鼠标移出事件</li>
+	    </ul>
+		
+		<br>
+		<div id="app1">
+		    <button v-on:click="counter += 1"> Add1 </button>
+		    <p>the button above has been clicked {{ counter }} times</p>
+	    </div>
+
+	    <br>
+	    <div id="app2">
+	    	<button v-on:click="great">great</button>
+	    </div>
+
+	    <br>
+	     <div id="app3">
+		    <button v-on:click="say('hi')">say hi</button>
+		    <button v-on:click="say('what')">say what</button>
+	    </div>
+
+	    <br>
+		<button id="app4" v-on:click="warn('form cannot be submitted yet.', $event)">submit</button>
+		
+		<br>
+		<div id="app5" @click="show">
+		    <input @click.stop="doIt" value="clickMe" type="button" name="">        
+		</div>
+
+		<br>
+		<div id="app6">
+			<p>原始数据：{{message}}</p>
+			<h3>文本框</h3>    
+			<input type="text" v-model="message"><br>
+			<input type="text" v-model.lazy="message"><br>
+			<input type="text" v-model.number="message"><br>
+			<input type="text" v-model.trim="message"><br>
+			<hr>
+			<h3>文本域</h3>
+			<textarea v-model="message"></textarea>
+			<hr>
+			<h3>多选框</h3>
+			<input type="checkbox" id="checkbox" v-model="isTrue">
+			<label for="checkbox">{{isTrue}}</label>
+			<hr>
+			<h3>多选框绑定一个数组</h3>
+			<p>
+			    <input type="checkbox" id="zhang" value="zhangsan" v-model="names">
+			    <label for="zhang">zhangsan</label>
+			    <input type="checkbox" id="li" value="lisi" v-model="names">
+			    <label for="zhang">lisi</label>
+			    <input type="checkbox" id="wang" value="wangwu" v-model="names">
+			    <label for="zhang">wangwu</label>
+			</p>
+			<p>{{names}}</p>
+			<hr>
+			<h3>单选按钮的双向数据绑定</h3>
+			<p>
+			    <input type="radio" id="man" value="男" v-model="sex">
+			    <label for="man">男</label>
+			    <input type="radio" id="woman" value="女" v-model="sex">
+			    <label for="woman">女</label>
+			    <p>你选择的性别是：{{sex}}</p>
+			</p>
+		</div>
+
+		<br>
+		<div id="app61">
+		    <select v-model="selected">
+		        <option disabled>please select one</option>
+		        <option>A</option>
+		        <option>B</option>
+		        <option>C</option>
+		    </select>
+		    <span>selected : {{ selected }}</span>  
+		</div>
+
+		<br>
+		<div id="app7">
+		    <select v-model="selected" multiple>
+		        <option>A</option>
+		        <option>B</option>
+		        <option>C</option>
+		    </select>
+		    <br>
+		    <span>selected : {{ selected }}</span>
+		</div>
+
+		<br>
+		<div id="app8">
+		    <select v-model="selected">
+		        <option v-for="option in options" v-bind:value="option.value">
+		            {{option.text}}
+		        </option>
+		    </select>
+		    <span> selected ： {{ selected}}</span>
+		</div>
+
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript">
+	var app = new Vue({
+		el : '#app',
+	    data : {
+
+	    },
+	    methods : {
+	        clickMe : function(){
+	            console.log('单击事件发生');
+	        },
+	        dblclickMe : function (){
+	            console.log('双击事件发生');
+	        },
+	        mouseover : function() {
+	            console.log('鼠标移入事件');
+	        },
+	        mouseout : function () {
+	            console.log('鼠标移出');
+	        }
+	    }
+	});
+
+	var app1 = new Vue({
+		el: '#app1',
+		data: {
+			counter: 0
+		}
+	});
+
+	var app2 = new Vue({
+    	el : "#app2",
+	    data : {
+	        name : 'vue'
+	    },
+	    methods : {
+	        great : function(event){
+	            console.log('hello' + ' ' + this.name + '!');
+	            if(event){
+	                console.log(event.target.tagName);
+	            }
+	        }
+	    }
+    });
+
+    var app3 = new Vue({
+	    el : '#app3',
+	    methods : {
+	        say : function(message){
+	            console.log(message);
+	        }
+	    }
+    });
+	   
+	var app4 = new Vue({
+	    el : '#app4',
+	    methods : {
+	        warn : function(message, event){
+	            if(event) event.preventDefault();
+	            console.log(message);
+	        }
+	    }
+	});
+
+	var app5 = new Vue({
+		el : "#app5",
+		methods : {
+		    doIt : function(){
+		        console.log(123);
+		    },
+		    show : function(){
+		        console.log(456);
+		    }   
+		}
+	});
+
+	var app6 = new Vue({
+	    el : "#app6",
+	    data : {
+	        message : "hello world",
+	        isTrue : false,
+	        names : [],
+	        sex : "男"
+	    }
+	});
+
+	var app61 = new Vue({
+        el : "#app61",
+        data : {
+            selected : ' '
+        }
+    });
+
+    var app7 = new Vue({
+        el : "#app7",
+        data : {
+            selected : []
+        }
+    });
+
+    var app8 = new Vue({
+	    el : '#app8',
+	    data : {
+	        selected : 'A',
+	        options : [
+	            {text : 'one', value : 'A'},
+	            {text : 'two', value : 'B'},
+	            {text : 'three', value : 'C'}
+	        ]
+	    }
+	});
+	</script>
+
+</html>

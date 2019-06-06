@@ -6,7 +6,8 @@
 		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
 	</head>
 	<body>
-		
+		<!-- v-if 指令用于条件性地渲染一块内容。这块内容只会在指令的表达式返回 truthy 值的时候被渲染。 -->
+		<!-- v-else 元素必须紧跟在带 v-if 或者 v-else-if 的元素的后面，否则它将不会被识别。 -->
 		<div id="app1">
 			<p v-if="ok">yes</p>
 			<p v-else>no</p>
@@ -27,12 +28,22 @@
 		  <button @click="toggleLoginType">Toggle login type</button>
 		</div>
 		
+		<!-- 带有 v-show 的元素始终会被渲染并保留在 DOM 中。v-show 只是简单地切换元素的 CSS 属性 display。 -->
+		<!-- 注意，v-show 不支持 <template> 元素，也不支持 v-else -->
 		<div id="app3">
 			<p v-show="show">显示</p>
 			<p v-show="hide">隐藏</p>
 		</div>
 		
-			
+		<!-- 
+			v-if vs v-show区别：
+			v-if 也是惰性的：如果在初始渲染时条件为假，则什么也不做——直到条件第一次变为真时，才会开始渲染条件块。
+			相比之下，v-show 就简单得多——不管初始条件是什么，元素总是会被渲染，并且只是简单地基于 CSS 进行切换。
+			一般来说，v-if 有更高的切换开销，而 v-show 有更高的初始渲染开销。因此，如果需要非常频繁地切换，则使用 v-show 较好；如果在运行时条件很少改变，则使用 v-if 较好。
+		 -->
+		
+		<!-- v-for 指令根据一组数组的选项列表进行渲染。v-for 指令需要使用 item in items 形式的特殊语法，items 是源数据数组并且 item 是数组元素迭代的别名。 -->
+		<!-- 也可以用 of 替代 in 作为分隔符，因为它是最接近 JavaScript 迭代器的语法 -->
 		<!--列表渲染 v-for -->
 		<ul id="app4">
 			<li v-for="(item,index) in items">
@@ -62,6 +73,11 @@
 		<!--key的工作方式类似于一个属性，所以你需要用 v-bind 来绑定动态值 (在这里使用简写)-->
 		<div v-for="item in items" :key="item.id">
 		  <!-- 内容 -->
+		</div>
+
+		<!-- 也可以用 v-for 通过一个对象的属性来迭代 -->
+		<div v-for="(value, name, index) in object">
+			{{ index }}. {{ name }}: {{ value }}
 		</div>
 		
 		<ul id="app8">

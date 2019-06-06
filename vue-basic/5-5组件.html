@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>组件</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<!-- 全局注册案例 -->
+		<div id="app">
+			<my-component></my-component>
+	    </div>
+
+		<!-- 局部注册案例1 -->
+	    <div id="app2">
+	    	<part-component></part-component>
+	    </div>
+
+		<!-- 局部注册案例2 -->
+	    <div id="app3">
+	    	<parent-child></parent-child>
+	    </div>
+
+		<!-- 局部注册案例3 -->
+		<div id="app4">
+		    <aaa></aaa>
+		</div>
+
+		<template id="bbb">
+		    <div>
+		        <h2>{{msg}}</h2>
+		        <ul>
+		            <li v-for="data in myData">{{data}}</li>
+		        </ul>
+		    </div>
+		</template>
+
+		<!-- 针对is属性的小例子 -->
+		<div id="app5">
+			<table>
+				<tr is="my-row"></tr>
+				<tr is="my-row"></tr>
+			</table>
+		</div>
+
+		<!-- data必须是函数 -->
+		<div id="app6">
+			<simple-counter></simple-counter>
+			<simple-counter></simple-counter>
+			<simple-counter></simple-counter>
+		</div>
+
+		<!-- 父组件传值给子组件 -->
+		<div id="app7">
+			<counter heading="like" color="green"></counter>
+			<counter heading="dislike" color="red"></counter>
+		</div>
+		
+		<template id="counter-template">
+		    <div>
+		        <h1>{{heading}}</h1>
+		        <button @click="count+=1" :style="{background: color}">{{count}}</button>
+		    </div>
+		</template>
+
+	</body>
+	<script type="text/javascript" src="https://cdn.bootcss.com/vue/2.0.7/vue.js"></script>
+	<script type="text/javascript">
+		
+		//注册组件
+		Vue.component('my-component',{
+			template: '<div>我是全局组件</div>'
+		})
+
+		//创建根实例
+		var app = new Vue({
+			el: '#app',
+		});
+
+		/*----------------分割线-----------------*/
+
+		var app2 = new Vue({
+			el: '#app2',
+			//注册局部组件
+			components: {
+				'part-component': {
+					template: '<div>我是局部组件</div>'
+				}
+			}
+		});
+
+		/*----------------分割线-----------------*/
+
+		//注册一个子组件
+	    var Child = {
+	        template:'<h3>子组件数据</h3>'
+	    };
+	    //注册一个父组件
+	    var Parent = {
+	        //这里必须用一个容器把注册组件包起来，否则会报错
+	        template:'<div><h1>父组件数据</h1><child></child></div>',
+	        components:{
+	            'child':Child
+	        }
+	    };
+	    //创建一个根实例
+	    var app3 = new Vue({
+	        el:'#app3',
+	        components:{
+	            //<parent-child>只能用在父组件模板内
+	            'parent-child':Parent
+	        }
+	    });
+		
+	    /*----------------分割线-----------------*/
+
+	    var app4 = new Vue({
+	    	el: '#app4',
+	    	data: {},
+	    	components: {
+	    		'aaa': {
+	    			template: '#bbb',
+	    			data: function(){
+	    				return {
+	    					msg: 'fruits',
+	    					myData: ['apple','banaba','orange','pear']
+	    				}
+	    			}
+	    		}
+	    	}
+	    });
+
+	    /*----------------分割线-----------------*/
+		
+	    Vue.component('my-row',{
+	        template:'<tr><td>这是一行</td></tr>'
+	    });
+
+	    var app5 = new Vue({
+	    	el: '#app5',
+	    });
+
+	    /*----------------分割线-----------------*/
+
+	    Vue.component('simple-counter',{
+	    	template: '<button @click="counter+=1">{{counter}}</button>',
+	    	// data必须是函数且必须返回一个对象
+	    	data:function(){
+	    		return {
+	    			counter: 0
+	    		}
+	    	}
+	    });
+
+	    var app6 = new Vue({
+	    	el: '#app6',
+	    })
+
+	    /*----------------分割线-----------------*/
+
+	    var app7 = new Vue({
+	        el:'#app7',
+	        components:{
+	            'counter':{
+	                template:'#counter-template',
+	                //把父组件 counter 传递给子组件 template 的数据放到 props属性中
+	                props:['heading','color'],
+	                data:function(){
+	                    return {count:0}
+	                }
+	            }
+	        }
+	    })
+
+	</script>
+
+</html>

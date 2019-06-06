@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>事件修饰符</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<style>
+	        .isRed{color: red; }
+	    </style>
+	</head>
+
+	<body>
+		 <div id="app">
+         <!-- 
+            这里绑定class属性，
+            里边是一个表达式，
+            class的值是isRed，isRed显示与否取决于temp是true还是false
+        -->
+	        <div :class="{isRed : temp}" @click="changeColor">hello world</div>
+	    </div>
+
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript">
+		// 生命周期函数就是 Vue实例在某一个时间点自动执行的函数
+        var vm = new Vue({
+            el : "#app",
+            data : {
+                temp : false
+            },
+            methods : {
+                changeColor : function(){
+                    this.temp = !this.temp;
+                }
+            }
+            
+        })
+	</script>
+
+</html>

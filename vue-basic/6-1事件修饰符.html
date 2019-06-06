@@ -8,15 +8,42 @@
 	</head>
 
 	<body>
-		<div id="app">
+		<div id="app1" style="display: none;">
 			<textarea @input="descInput" v-model="desc"></textarea>
 			<span>{{remnant}}/200</span>
 		</div>
+		<div id="app">
+			<p v-show="seen">show and hide</p>
+			<li v-for="num in sortItem">{{num}}</li>
+		</div>
 	</body>
 	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+		var app = new Vue({
+		    el : '#app',
+		    data : {
+		        number : [3,2,1,4,5,11,32,25]   // 元素极其相似，那么就放在数组中
+		    },
+		    computed : {
+		        sortItem : function(){
+		            return this.number.sort(sortNumber);
+		        }
+		    }
+		})
+		function sortNumber(a,b){  // 此函数代表了对数字的排序算法。
+		    return a-b;
+		}
+
+		var app = new Vue({
+			el : '#app',
+			data : {
+				seen : true
+			}
+		})
+	</script>
 	<script type="text/javascript">
 		var app = new Vue({
-			el: '#app',
+			el: '#app1',
 			data: {
 				remnant: 200
 			},

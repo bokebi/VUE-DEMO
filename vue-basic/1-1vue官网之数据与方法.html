@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>初识Vue</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+	<body>
+		<!--声明式渲染-->
+		<div id="app0">
+			{{message}}
+		</div>
+		
+		<div id="example">
+			{{a}}
+		</div>			
+	</body>
+	<script type="text/javascript" src="js/vue.js" ></script>
+	<script type="text/javascript">
+		// 我们的数据对象
+		var data = {
+			a: 1,
+			message: 'hello Vue!'
+		}
+		// 该对象被加入到一个 Vue 实例中
+		var vm = new Vue({
+			el: '#app0',
+			data: data
+		});
+		console.log(vm.a === data.a);		//1
+		
+		// 设置属性也会影响到原始数据
+		vm.a = 2;
+		console.log(data.a);				//2
+		
+		// ……反之亦然
+		data.a = 3;
+		console.log(vm.a);					//3
+		
+		//值得注意的是只有当实例被创建时 data 中存在的属性才是响应式的。
+		//也就是说如果你添加一个新的属性，如下：那么对 b 的改动将不会触发任何视图的更新。
+		vm.b = 'hello';
+		console.log(data.b);				//undefined
+		
+
+		//除了数据属性，Vue 实例还暴露了一些有用的实例属性与方法。它们都有前缀 $，以便与用户定义的属性区分开来
+		var data = { a: 1 }
+		var vm = new Vue({
+			el: '#example',
+			data: data
+		})
+
+		console.log(vm.$data === data); // => true
+		console.log(vm.$el === document.getElementById('example')); // => true
+
+	</script>
+</html>
+

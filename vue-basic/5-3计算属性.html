@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>计算属性</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<div id="app">{{fullName}}</div>
+		
+		<div id="app1">{{fullName}}</div>
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script type="text/javascript">
+		var app = new Vue({
+			el: '#app',
+			data: {
+				firstName: 'zhang',
+				lastName: 'san'
+			},
+			computed: {
+				/*这里的计算结果fullName，不需要写在data中，直接渲染在页面上即可。
+                计算属性 有缓存
+                缓存机制：当依赖的数据没有发生变化时，就会缓存下来，不会重新计算，只有依赖的数据变化以后才会重新计算
+                优点：提高性能
+                计算属性直接写属性名字即可
+                如果是methods的话，就会每一次都重新计算*/
+				fullName: function(){
+					console.log('计算了一次');
+					return this.firstName + ' ' + this.lastName
+				}
+			}
+		});
+
+		var app1 = new Vue({
+			el: '#app1',
+			data: {
+				firstName: 'zhang',
+				lastName: 'san'
+			},
+			computed: {
+				fullName: {
+					get: function(){
+						return this.firstName + ' ' + this.lastName
+					},
+					// 当数据变化时，value是你自己改变的那个值
+					set: function(value){
+						var arr = value.split(' ');
+						this.firstName = arr[0];
+						this.lastName = arr[1];
+					}
+				}
+			}
+		});
+	</script>
+
+</html>

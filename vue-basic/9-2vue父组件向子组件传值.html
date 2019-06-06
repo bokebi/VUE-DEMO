@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>vue父子组件通信</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+
+	<body>
+		<!-- 
+			父组件向子组件传值：
+				属性方式
+				子组件通过props来接收父组件传递来的数据
+			单向数据流：
+				父组件可以随意的向子组件传递参数，但子组件不可以随意修改父组件的内容，只可以用
+				因为担心父组件数据改变了后，其他引用了此子组件的值也就改变了
+			解决方式：子组件有个data，复制一份父组件的值
+		-->
+		<div id="app">
+			<counter :count="0"></counter>
+			<counter :count="1"></counter>
+		</div>
+	</body>
+	<script type="text/javascript" src="js/vue.js"></script>
+	<script>
+        var counter = {
+            props : ['count'],
+            template : '<div @click="add">{{num}}</div>',
+            data : function(){
+                return {
+                    num : this.count
+                }
+            },
+            methods : {
+                add : function(){
+                    this.num ++
+                }
+            }
+        }
+        var vm = new Vue({
+            el : "#app",
+            components : {
+                counter : counter
+            }
+            
+            
+        })
+    </script>
+
+</html>
