@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>prop</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="components-prop" :style="{ fontSize: postFontSize + 'em' }">
+            <!-- 父级组件通过 v-on 监听子组件实例的任意自定义事件，这里是监听子组件的change-text自定义事件 -->
+            <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post" v-on:change-text="onChangeText"></blog-post>
+        </div>
+	<body>
+		
+	</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+        // 注册组件，传递prop属性   
+		Vue.component('blog-post', { 
+            props: ['post'],
+            // 每个组件必须只有一个根元素，这里外面必须套一层div，不然模板div里面的内容不会显示 
+            template: `
+                <div class="blog-post">
+                    <h3 v-text="post.title"></h3>
+                    <button v-on:click="$emit('change-text',0.1)">字体变大</button>
+                    <div v-html="post.id + '.' + post.content"></div>
+                </div>    
+            `, 
+        })
+        new Vue({
+            el: '#components-prop',
+            methods: {
+                onChangeText: function (enlargeAmount) {
+                    this.postFontSize += enlargeAmount
+                }
+            },
+            data: {
+                posts: [
+                    { id: 1, title: 'My journey with Vue',content: 'My journey with Vue，My journey with Vue' },
+                    { id: 2, title: 'Blogging with Vue',content: 'Blogging with Vue,Blogging with Vue' },
+                    { id: 3, title: 'Why Vue is so fun',content: 'Why Vue is so funWhy Vue is so fun' }
+                ],
+                // 在其父组件中，我们可以通过添加一个 postFontSize 数据属性来支持这个功能
+                postFontSize: 1
+            }
+        })
+    </script>
+</html>

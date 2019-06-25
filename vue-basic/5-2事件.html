@@ -168,7 +168,10 @@
 	    el : '#app4',
 	    methods : {
 	        warn : function(message, event){
-	            if(event) event.preventDefault();
+	            if(event){
+					//console.log(event);
+					event.preventDefault();
+				}
 	            console.log(message);
 	        }
 	    }

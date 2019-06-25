@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>prop</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="components-prop">
+            <blog-post v-for="post in posts" v-bind:key="post.id" v-bind:post="post"></blog-post>
+		</div>
+	<body>
+		
+	</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+        // 注册组件，传递prop属性   
+		Vue.component('blog-post', { 
+            props: ['post'],
+            // 每个组件必须只有一个根元素，这里外面必须套一层div，不然模板div里面的内容不会显示 
+            template: `
+                <div class="blog-post">
+                    <h3 v-text="post.title"></h3>
+                    <div v-html="post.id + '.' + post.content"></div>
+                </div>    
+            `, 
+        })
+        new Vue({
+            el: '#components-prop',
+            data: {
+                posts: [
+                    { id: 1, title: 'My journey with Vue',content: 'My journey with Vue，My journey with Vue' },
+                    { id: 2, title: 'Blogging with Vue',content: 'Blogging with Vue,Blogging with Vue' },
+                    { id: 3, title: 'Why Vue is so fun',content: 'Why Vue is so funWhy Vue is so fun' }
+                ]
+            }
+        })
+	</script>
+</html>

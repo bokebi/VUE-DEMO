@@ -17,12 +17,12 @@
 	</body>
 	<script type="text/javascript" src="js/vue.js"></script>
 	<script type="text/javascript">
+		// 注册组件，传递prop属性
 		Vue.component('blog-post',{
 			props: ['title'],
-			template: `
-				<h3 v-text='title'></h3>
-			`
+			template: `<p v-text='title'></p>`
 		})
+		// 创建组件根实例，把上面组件作为自定义元素使用
 		new Vue({
 			el: '#components-prop'
 		})
