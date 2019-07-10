@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>在组件上模拟v-model</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+	<body>
+		<current-user>
+            {{ user.firstName }}
+        </current-user>
+	</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+        Vue.component('current-user', {
+            template: `
+            <span>
+                <slot>{{ user.lastName }}</slot>
+            </span>
+            `,
+            methods: {
+                updateVal: function(val) {
+                    this.$emit('input', val);  
+                }
+            }
+        });
+        var app = new Vue({
+            el: '#app2',
+            data: {
+                price: ''
+            },
+            methods: {
+                onInput: function(val) {
+                    this.price = val;
+                }
+            }
+        });
+    </script>
+
+
+</html>

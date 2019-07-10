@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app1">
+        <h4>全局组件</h4>
+        <my-global></my-global>
+    </div>
+    <p></p>
+    <hr>
+    <p></p>
+    <div id="app2">
+        <h4>局部组件</h4>
+        <local-global></local-global>
+    </div>
+
+    <script src="js/vue.js"></script>
+    <script>
+        // 先注册全局组件
+        Vue.component('my-global',{
+            template: '<div>{{msg}}</div>',
+            data () {
+                return {
+                    msg: 'A global component'
+                }
+            }
+        });
+        // 再初始化
+        var app1 = new Vue({
+            el: '#app1'
+        });
+
+        var child = {
+            template: '<div>a local component</div>'
+        };
+        var app2 = new Vue({
+            el: '#app2',
+            data: {
+
+            },
+            components: {
+                // 局部组件
+                'local-global': child
+            }
+        });
+    </script>
+</body>
+</html>

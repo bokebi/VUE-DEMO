@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>在组件上模拟v-model</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="app">
+            <custom-input v-bind:value="searchText" v-on:input="searchText=$event"></custom-input>
+            <p>{{ searchText}}</p>
+        </div>
+        <!-- 
+            1. v-bind:value='searchText'
+            绑定： 初始化data的数据对象和Prop特性value
+            数据流动：从外到内。外部传入的数据可以被Vue实例得到，存在自定义的Props: value特性中。
+
+            2. v-on:input自定义='searchText = $event '
+            监听： input事件。自定义的事件。非原生HTMLDOM-input。
+            数据流动：从内到外。Vue实例的value特性的值，被赋予数据对象searchText。
+        -->
+	<body>
+		
+	</body>
+    <script src="https://cdn.jsdelivr.net/npm/vue"></script>
+    <script type="text/javascript">
+        // 注册组件，传递prop属性   
+        Vue.component('custom-input', {
+        props: ['value'],
+        template: `
+            <input v-bind:value="value" v-on:input="$emit('input', $event.target.value)">
+        `
+        })
+        new Vue({
+            el: '#app',
+            data: {
+                searchText: "模拟v-model"
+            },
+        })
+        /* 
+        1. <input>中的v-bind:value="value"
+        绑定： input元素的value特性和组件的prop特性value
+        数据流动：从外到内。外部传入的数据被prop value特性得到,然后再被Vue实例的<input>的value特性得到。
+
+        2. <input>中的v-on:input="$emit('input', $event.target.value)"
+        监听： input事件。这是原生的HTMLDOM事件。
+        数据流动：从内到外。当用户在输入框输入任意字符后，后台监听到input事件，然后执行$emit这个实例方法。
+        $emit(eventName, 参数)，这个实例方法会触发当前实例上的事件'input'，并发送参数。
+        实例上的v-on监听到了事件'input'，执行一个内联语句。参数被赋予searchText对象。
+        */
+    </script>
+
+
+</html>

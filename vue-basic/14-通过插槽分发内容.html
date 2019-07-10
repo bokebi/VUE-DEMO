@@ -12,6 +12,14 @@
             Something bad happened.
         </alert-box>
     </div>
+    <p></p>
+    <p></p>
+    <p></p>
+    <div id="app2">
+        <chacao>
+            我是插槽里面的内容
+        </chacao>
+    </div>
     <script src="js/vue.js"></script>
     <script>
         Vue.component('alert-box', {
@@ -24,7 +32,19 @@
         });
         var app = new Vue({
             el: '#app'
-        })
+        });
+
+        Vue.component('chacao',{
+            template: `
+                <div class="demo-chacao">
+                    <strong>attention:</strong>
+                    <slot></slot>
+                </div>
+            `
+        });
+        new Vue({
+            el: '#app2'
+        });
     </script>
 </body>
 </html>

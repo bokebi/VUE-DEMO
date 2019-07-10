@@ -1,0 +1,118 @@
+<!-- <!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>单向数据流</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="app">
+            <custom-component :count="count"></custom-component>
+        </div>
+       
+	<body>
+		
+    </body>
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+       Vue.component('custom-component',{
+           props: ['count'],
+           template: `
+                <div>
+                    <h3>这是一个自定义模板</h3>
+                    <input type="button" value="按钮" @click="changeCount" />
+                    <p>{{count}}</p>
+                </div>
+           `,
+           methods: {
+               changeCount(){
+                   this.count++
+               }
+           }
+       })
+       var app = new Vue({
+           el: '#app',
+           data () {
+               return{
+                   count: 0
+               }
+           }
+       })
+    </script>
+</html> -->
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8" />
+		<title>单向数据流</title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+	</head>
+		<div id="app">
+            <custom-component :count="count"></custom-component>
+        </div>
+       
+	<body>
+		
+	</body>
+    <script src="js/vue.js"></script>
+    <script type="text/javascript">
+       /* Vue.component("custom-component", {
+            //作为data中局部数据的初始值来过渡，必须以函数形式申明，
+            //相当于子组件里操作的都是this.count的指针
+            data() {
+                return {
+                    initCount: this.count
+                }
+            },
+            props: ['count'],
+            template: `
+            <div>
+                <h1>一个自定义模版</h1>
+                <input type="button"  @click="changeCount" value="按钮"/>
+                {{initCount}}
+            </div>`,
+            methods: {
+                changeCount() {
+                  //这里计算的也是initCount
+                    this.initCount++
+                }
+            }
+        }); */
+
+        Vue.component("custom-component", {
+            data() {
+                return {
+                    initCount: this.count
+                }
+            },
+            //与直接使用data不同的是这里添加选项参数计算属性`computed`
+            computed: {
+                initCount2() {
+                    return this.initCount;
+                }
+            },
+            props: ['count'],
+            template: `
+            <div>
+                <h1>一个自定义模版</h1>
+                <input type="button"  @click="changeCount" value="按钮"/>
+                {{initCount2}}
+            </div>`,
+            methods: {
+                changeCount() {
+                    this.initCount++
+                }
+            }
+        });
+
+       var app = new Vue({
+           el: '#app',
+           data () {
+               return{
+                   count: 0
+               }
+           }
+       })
+    </script>
+</html>
