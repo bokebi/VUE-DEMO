@@ -10,6 +10,15 @@
 	</head>
 
 	<body>
+		<!-- 
+			自定义过渡类名：优先级远高于普通类名，这里用到了enter-active-class和leave-active-class
+			enter-class
+			enter-active-class
+			enter-to-class (2.1.8+)
+			leave-class
+			leave-active-class
+			leave-to-class (2.1.8+)
+		 -->
 		<div id="demo">
 			<button @click = "show = !show">toggle</button>
 			<transition enter-active-class="animated bounceInRight" leave-active-class="animated bounceOutRight">
